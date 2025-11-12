@@ -1,0 +1,22 @@
+# Enable rewrite engine
+RewriteEngine On
+
+# Force HTTPS (optional)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+
+# Allow access to necessary files
+<FilesMatch "\.(html|css|js|php|json)$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
