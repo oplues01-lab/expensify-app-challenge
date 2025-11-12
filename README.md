@@ -86,7 +86,7 @@ Key Components
    - Accepts JSON input and returns JSON output
    - Validates endpoints and request format
 
-2. js/app.js
+2. js/script.js
    - Manages application state and logic
    - Handles authentication flow
    - Performs AJAX requests via jQuery
