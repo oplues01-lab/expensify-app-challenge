@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expensify Mini App</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <div id="app-container">
+        <header>
+            <h1>Expensify Transaction App</h1>
+            <div id="user-info" style="display:none;">
+                <span id="user-email">hhh</span>
+                <button id="logout-btn" class="btn">Logout</button>
+
+            </div>
+            
+        </header>
+
+        <!-- Login Form -->
+        <div id="login-section">
+            <form id="login-form">
+                    <h2>Sign In</h2>
+                <div class="inputdiv">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Partner user id" required>
+                </div>
+                <div class="inputdiv">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Partner user secret" required>
+                </div>
+                <button type="submit" class="btn">Sign In</button>
+                <div id="login-error" class="error-message"></div>
+            </form>
+        </div>
+
+
+
+
+        <!-- Transactions Section -->
+        <div id="transactions-section" class="transaction-section" style="display:none;">
+
+            
+            <div id="transactions-table-container" class="t-table-container">
+                
+                <h2>Transactions Histroy</h2>
+                <button onclick="downloadTableAsPDF()" class="btn">Download Table as PDF</button>
+
+                <div id="transactions-error" class="error-message"></div>
+                <div id="loading" class="loading">Loading transactions...</div>
+                <table id="transactions-table" class="t-table"> 
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Date</th>
+                            <th>Merchant</th>
+                            <th>Amount</th>                            
+                            <th>Currency</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactions-body" class="t-body">
+                        <!-- Transactions will be inserted here -->
+                         
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Add Transaction Form -->
+            <div id="add-transaction-section" class="transaction-form">
+                <form id="add-transaction-form" class="add-transaction-form">
+                    
+                    <h3>Add New Transaction</h3>
+                    <div class="inputdiv">
+                        <label for="transaction-date">Date:</label>
+                        <input type="date" id="transaction-date" name="date" required>
+                    </div>
+                    <div class="inputdiv">
+                        <label for="merchant">Merchant:</label>
+                        <input type="text" id="merchant" name="merchant" required>
+                    </div>
+                    <div class="inputdiv">
+                        <label for="amount">Amount:</label>
+                        <input type="number" id="amount" name="amount" step="0.01" required>
+                    </div>
+                    <div class="inputdiv">
+                        <label for="currency">Currency:</label>
+                        <input type="text" id="currency" name="currency" required>
+                    </div>
+                    <button type="submit" class="btn">Add Transaction</button>
+                    <div id="add-transaction-error" class="error-message"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Javascript Files, we've included JQuery here, feel free to use at your discretion. Add whatever else you may need here too. -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
+
+
