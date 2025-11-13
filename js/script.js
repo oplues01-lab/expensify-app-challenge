@@ -206,9 +206,14 @@ function handleAddTransaction(e) {
                     amount: amount,
                     currency:currency
                 };
+                setInterval(()=>{
+                    $('#add-transaction-error').text('Adding Transaction...');
+
+                }, 1000);
+
                 
                 addTransactionToTable(newTransaction);
-                 $('#add-transaction-error').text('Adding Transaction...');
+                
             } else {
                 $('#add-transaction-error').text('Failed to create transaction.');
             }
@@ -243,7 +248,12 @@ function addTransactionToTable(transaction) {
     `);
     
     // Add to top of table
-    tbody.prepend(row);
+    if(tbody.prepend(row){
+        setInterval(()=>{
+            $('#add-transaction-error').text('Transaction Added Successfully')
+        }, 1000);
+    };
+    
 }
 //  For ease of testing the app, I added logout
  
