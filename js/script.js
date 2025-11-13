@@ -338,54 +338,60 @@ function escapeHtml(text) {
 
 
 
-
-function downloadTableAsPDF() {
-    // Select only the transactions table section
-    const tableSection = document.getElementById('transactions-table-container');
-
-    // Open a new print window
-    const printWindow = window.open('', '', 'width=900,height=700');
-
-    // Write only that section's HTML with your full site styling
-    printWindow.document.write(`
-        <html>
-        <head>
-            <title>Transactions History</title>
-            <link rel="stylesheet" href="css/style.css">
-            <style>
-                /* Optional print adjustments */
-                body {
-                    background: white !important;
-                    padding: 40px;
+// Download function
+function downloadTableAsCSV() {
+    const tableBody = document.getElementById('transactions-body');
+    
+    if (!tableBody || tableBody.children.length === 0) {
+        alert('No transactions available to download');
+        return;
+    }
+    
+    // CSV Headers
+    let csvContent = 'S/N,Date,Merchant,Amount,Currency\n';
+    
+    const rows = Array.from(tableBody.getElementsByTagName('tr'));
+    
+    rows.forEach(function(row) {
+        if (!row.querySelector('.no-data')) {
+            const cells = row.getElementsByTagName('td');
+            
+            if (cells.length > 0) {
+                let rowData = [];
+                
+                for (let i = 0; i < cells.length; i++) {
+                    let cellText = cells[i].textContent.trim();
+                    cellText = cellText.replace(/"/g, '""');
+                    
+                    if (cellText.includes(',') || cellText.includes('\n') || cellText.includes('"')) {
+                        cellText = '"' + cellText + '"';
+                    }
+                    
+                    rowData.push(cellText);
                 }
-                header, #add-transaction-section, #logout-btn {
-                    display: none !important;
-                }
-                #transactions-table-container {
-                    box-shadow: none !important;
-                    overflow: visible !important;
-                }
-                .t-table-container::-webkit-scrollbar {
-                    display: none;
-                }
-                @page {
-                    size: A4;
-                    margin: 15mm;
-                }
-            </style>
-        </head>
-        <body>
-            ${tableSection.outerHTML}
-        </body>
-        </html>
-    `);
-
-    // Wait for the document to finish loading, then print
-    printWindow.document.close();
-    printWindow.focus();
-
-    // Add a short delay to ensure styles load before print
-    setTimeout(() => {
-        printWindow.print();
-    }, 500);
+                
+                csvContent += rowData.join(',') + '\n';
+            }
+        }
+    });
+    
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    
+    const today = new Date();
+    const dateString = today.toISOString().split('T')[0];
+    const fileName = `transactions_${dateString}.csv`;
+    
+    link.setAttribute('href', url);
+    link.setAttribute('download', fileName);
+    link.style.display = 'none';
+    
+    document.body.appendChild(link);
+    link.click();
+    
+    setTimeout(function() {
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }, 100);
 }
