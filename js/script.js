@@ -87,7 +87,7 @@ function handleLogin(e) {
 }
 
 
-//   Fetch all transactions
+//   Fetch all transactions; this endpoint fetches all the transaction from db
  
 function fetchTransactions() {
     $('#loading').show();
@@ -141,19 +141,17 @@ function renderTransactions(transactions) {
         return;
     }
     
-    // He I built the rows efficiently
+    // Here I built the rows efficiently
     const fragment = document.createDocumentFragment();
     
     transactions.forEach(function(transaction, index) {
         const row = document.createElement('tr');
         
-        // Format date
-        const date = transaction.created ;
-        
         // Extract transaction details
         const merchant = transaction.merchant;
         const amount = transaction.amount;
-        const currency = transaction.currency;
+        const currency = transaction.currency;        
+        const date = transaction.created ;
         
         row.innerHTML = `
             <td>${index + 1}</td>
@@ -170,7 +168,7 @@ function renderTransactions(transactions) {
 }
 
 
-//  Handle add transaction form submission
+//  Handle add transaction form submission; for creating new transaction
  
 function handleAddTransaction(e) {
     e.preventDefault();
@@ -310,7 +308,7 @@ function setCookie(name, value, days) {
     let expires = "";
     if (days) {
         const date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); //
         expires = "; expires=" + date.toUTCString();
     }
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
@@ -332,7 +330,6 @@ function deleteCookie(name) {
 }
 
 // Utility functions
- 
 
 
 function formatAmount(amount) {
@@ -354,7 +351,7 @@ function escapeHtml(text) {
 
 
 
-// Download function
+// Download function; for downloading the transaction list table
 function downloadTableAsCSV() {
     const tableBody = document.getElementById('transactions-body');
     
