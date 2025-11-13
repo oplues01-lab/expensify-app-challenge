@@ -42,11 +42,14 @@
         <!-- Transactions Section -->
         <div id="transactions-section" class="transaction-section" style="display:none;">
 
-            
+            <div class="download-section">
+                <button onclick="downloadTableAsCSV()" class="download-btn">
+                    Download
+                </button>
+            </div>
             <div id="transactions-table-container" class="t-table-container">
                 
                 <h2>Transactions Histroy</h2>
-                <button onclick="downloadTableAsPDF()" class="btn">Download Table as PDF</button>
 
                 <div id="transactions-error" class="error-message"></div>
                 <div id="loading" class="loading">Loading transactions...</div>
