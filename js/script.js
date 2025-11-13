@@ -229,7 +229,7 @@ function handleAddTransaction(e) {
 function addTransactionToTable(transaction) {
     const tbody = $('#transactions-body');
     
-    let serialNumber =  1;
+let serialNumber = $('#transactions-body tr').length + 1;
 
 
     // Remove "no data" row if present
@@ -237,7 +237,7 @@ function addTransactionToTable(transaction) {
     
     const row = $('<tr>');
     row.html(`
-        <td></td>
+        <td>${serialNumber}</td>
         <td>${transaction.created}</td>
         <td>${escapeHtml(transaction.merchant)}</td>
         <td>${formatAmount(transaction.amount)}</td>        
