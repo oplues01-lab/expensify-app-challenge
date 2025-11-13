@@ -225,15 +225,17 @@ function handleAddTransaction(e) {
 
 
 //  Adding a single transaction to the table
- function addTransactionToTable(transaction) {
+function addTransactionToTable(transaction) {
     const tbody = $('#transactions-body');
     
+
+
     // Remove "no data" row if present
     tbody.find('.no-data').parent().remove();
     
     const row = $('<tr>');
     row.html(`
-        <td>1</td>
+        <td></td>
         <td>${transaction.created}</td>
         <td>${escapeHtml(transaction.merchant)}</td>
         <td>${formatAmount(transaction.amount)}</td>        
@@ -242,14 +244,7 @@ function handleAddTransaction(e) {
     
     // Add to top of table
     tbody.prepend(row);
-    
-    // Update all serial numbers
-    tbody.find('tr').each(function(index) {
-        $(this).find('td:first').text(index + 1);
-    });
 }
-
-
 //  For ease of testing the app, I added logout
  
 function handleLogout() {
