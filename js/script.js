@@ -233,14 +233,12 @@ function handleAddTransaction(e) {
 function addTransactionToTable(transaction) {
     const tbody = $('#transactions-body');
     
-
-
     // Remove "no data" row if present
     tbody.find('.no-data').parent().remove();
     
     const row = $('<tr>');
     row.html(`
-        <td></td>
+        <td>1</td>
         <td>${transaction.created}</td>
         <td>${escapeHtml(transaction.merchant)}</td>
         <td>${formatAmount(transaction.amount)}</td>        
@@ -248,13 +246,16 @@ function addTransactionToTable(transaction) {
     `);
     
     // Add to top of table
-    if(tbody.prepend(row){
-        setInterval(()=>{
-            $('#add-transaction-error').text('Transaction Added Successfully')
-        }, 1000);
-    };
+    tbody.prepend(row);
     
+    // Update all serial numbers
+    tbody.find('tr').each(function(index) {
+        $(this).find('td:first').text(index + 1);
+    });
 }
+
+
+
 //  For ease of testing the app, I added logout
  
 function handleLogout() {
