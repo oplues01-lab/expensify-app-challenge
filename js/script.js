@@ -248,6 +248,8 @@ function handleAddTransaction(e) {
         $(this).find('td:first').text(index + 1);
     });
 }
+
+
 //  For ease of testing the app, I added logout
  
 function handleLogout() {
