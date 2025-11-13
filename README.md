@@ -1,4 +1,4 @@
-Expensify Mini App
+Expensify App Challenge
 
 A single-page web application for managing Expensify transactions using PHP, JavaScript (jQuery), and the Expensify API.
 
@@ -22,7 +22,8 @@ Installation
    php -S localhost:8000
 
 3. Access:
-   Go to http://localhost:8000
+   Go to http://localhost:8000 (localhost)
+   https://expensify-app-challenge.onrender.com/ (online)
 
 Usage
 
@@ -39,7 +40,8 @@ All transactions are displayed in a table with columns:
 2. Merchant
 3. Amount
 4. Currency
-The table efficiently handles large datasets
+The table efficiently handles large datasets; it has it own vertical scroll bar
+Click download to download the datasets automatically
 
 Add New Transaction
 1. Scroll to the Add New Transaction form
@@ -52,7 +54,7 @@ Add New Transaction
 4. The new transaction appears instantly at the top of the table
 
 Logout
-Click the Logout button in the header to clear your session
+Click the Logout button on the header to clear your session
 
 API Configuration
 
@@ -63,19 +65,19 @@ The application uses the following Expensify API endpoints:
 
 Required Headers
 All API requests include the custom header:
-student: expensify-challenge-2025
+expensifyengineeringcandidate 
 
 Partner Credentials
 The app uses hardcoded partner credentials:
-- partnerName: applihgjhgt
-- partnerPassword: f78tyiyuoiuog
+- partnerName: ''
+- partnerPassword: ''
 
 Technical Details
 
 Technologies Used
 - Frontend: HTML5, CSS3, JavaScript (ES5/ES6)
 - Library: jQuery 3.6.0
-- Backend: PHP 7.x with cURL
+- Backend: PHP 8.x with cURL
 - API: Expensify REST API
 
 Key Components
@@ -83,7 +85,7 @@ Key Components
 1. api_proxy.php
    - Handles CORS issues by proxying requests to Expensify API
    - Adds required custom headers
-   - Accepts JSON input and returns JSON output
+   - Accepts application/x-www-form-urlencoded input and returns JSON output
    - Validates endpoints and request format
 
 2. js/script.js
@@ -106,25 +108,15 @@ Issues Solved
 2. Session Persistence: Used cookies to store authToken and userEmail. Automatically restores session on page refresh
 3. Large Dataset Performance: Used DocumentFragment for efficient DOM manipulation. Minimized reflows and repaints when rendering transactions
 4. Error Handling: Graceful error messages for failed API calls. Input validation on forms. User-friendly error display
-5. Security: HTML escaping to prevent XSS attacks. Secure cookie storage. HTTPS API endpoints
+5. Security: HTML escaping to prevent XSS attacks. Secure cookie storage. HTTPS API endpoints.  Use environment variables for sensitive data in config. Use HTTPS in production environments
 
-
-
-
-Security Notes
-
-- Never expose your real Expensify credentials in production
-- Use environment variables for sensitive data
-- Implement proper server-side validation
-- Use HTTPS in production environments
-- Consider implementing CSRF protection
 
 I Humbly Recommend Future Enhancements
 
 1. Pagination for large transaction lists
 2. Transaction filtering and search
 3. Edit/delete transaction functionality
-4. Export transactions to CSV
+4. PDF download of transactions list
 5. Better error recovery mechanisms
 6. Unit and integration tests
 7. Backend session management instead of cookies
@@ -132,6 +124,4 @@ I Humbly Recommend Future Enhancements
 
 
 Conclusion
-I built as a demonstration of full-stack web development skills with PHP, JavaScript, and RESTful API integration
-"# transaction-app" 
-"# transaction-app" 
+I built this application as a demonstration of full-stack web development skills with PHP, JavaScript, and RESTful API integration
