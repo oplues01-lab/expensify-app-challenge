@@ -178,7 +178,8 @@ function handleAddTransaction(e) {
     const date = $('#transaction-date').val();
     const merchant = $('#merchant').val();
     const amount = parseFloat($('#amount').val());
-    
+    const currency = $('#currency').val();
+
     $('#add-transaction-error').text('');
     
     $.ajax({
@@ -190,6 +191,7 @@ function handleAddTransaction(e) {
                 created: date,
                 merchant: merchant,
                 amount: amount,
+                currency: currency
         },
         success: function(response) {
             
@@ -202,9 +204,11 @@ function handleAddTransaction(e) {
                     created: date,
                     merchant: merchant,
                     amount: amount,
+                    currency:currency
                 };
                 
                 addTransactionToTable(newTransaction);
+                 $('#add-transaction-error').text('Adding Transaction...');
             } else {
                 $('#add-transaction-error').text('Failed to create transaction.');
             }
