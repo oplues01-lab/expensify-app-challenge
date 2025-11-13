@@ -110,6 +110,7 @@ function fetchTransactions() {
             
             if (response.transactionList && Array.isArray(response.transactionList)) {
                 renderTransactions(response.transactionList);
+                $("#download-section").show();
             } else {
 
                 $('#transactions-error').text('No transactions found.');
