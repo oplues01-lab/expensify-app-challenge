@@ -20,6 +20,7 @@ body {
     min-height: 100vh;
 }
 
+/* App Section */
 #app-container {
     display: flex;
     justify-content: center;
@@ -43,11 +44,7 @@ body {
     z-index: 1000;
 }
 
-#app-container header h1 {
-    font-size: 25px;
-    color: var(--darkColor);
-}
-
+/*  for all the buttons */
 .btn {
     background-color: white;
     padding: 8px 16px;
@@ -268,14 +265,20 @@ form .inputdiv input:focus {
     font-size: 16px;
 }
 
-.error-message {
-    color: #e74c3c;
+.error-message, .success-message {
     font-size: 14px;
     margin-top: 10px;
     min-height: 20px;
     text-align: center;
 }
 
+.error-message {
+    color: #e74c3c;
+}
+
+.success-message {
+    color: var(--lightBlue);  
+}
 .loading {
     text-align: center;
     padding: 30px;
