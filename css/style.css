@@ -174,7 +174,7 @@ form .inputdiv input:focus {
 /* Sticky Table Heading */
 .transaction-section .t-table-container h2 {
     position: sticky;
-    top: 0;
+    top: -20;
     z-index: 12;
     background: white;
     padding: 15px 0;
