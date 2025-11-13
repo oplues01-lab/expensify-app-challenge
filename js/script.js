@@ -180,7 +180,8 @@ function handleAddTransaction(e) {
     const amount = parseFloat($('#amount').val());
     const currency = $('#currency').val();
 
-    $('#add-transaction-error').text('');
+    // $('#add-transaction-error').text('');
+    $('#add-transaction-error').text('Adding Transaction...');
     
     $.ajax({
         url: 'api_proxy.php',
@@ -206,13 +207,16 @@ function handleAddTransaction(e) {
                     amount: amount,
                     currency:currency
                 };
-                setInterval(()=>{
-                    $('#add-transaction-error').text('Adding Transaction...');
-
-                }, 1000);
 
                 
                 addTransactionToTable(newTransaction);
+                    // Show success message
+                $('#add-transaction-error').text('Transaction added successfully!');
+                
+                // Clear success message after 3 seconds
+                setTimeout(function() {
+                    $('#add-transaction-error').text('');
+                }, 3000);
                 
             } else {
                 $('#add-transaction-error').text('Failed to create transaction.');
