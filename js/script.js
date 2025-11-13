@@ -181,7 +181,7 @@ function handleAddTransaction(e) {
     const currency = $('#currency').val();
 
     // $('#add-transaction-error').text('');
-    $('#add-transaction-error').text('Adding Transaction...');
+    $('#add-transaction-success').text('Adding Transaction...');
     
     $.ajax({
         url: 'api_proxy.php',
@@ -211,11 +211,11 @@ function handleAddTransaction(e) {
                 
                 addTransactionToTable(newTransaction);
                     // Show success message
-                $('#add-transaction-error').text('Transaction added successfully!');
+                $('#add-transaction-success').text('Transaction added successfully!');
                 
                 // Clear success message after 3 seconds
                 setTimeout(function() {
-                    $('#add-transaction-error').text('');
+                    $('#add-transaction-success').text('');
                 }, 3000);
                 
             } else {
